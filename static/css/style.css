@@ -1,8 +1,11 @@
 
 body {
 
-  background-color: rgb(193, 211, 212);
- 
+  background-color: rgb(223, 232, 233);
+  /* background-image: url("http://cdn8.openculture.com/wp-content/uploads/2014/05/vignelli-subway-map-19721.jpg");
+  background-attachment: fixed;
+  background-repeat: no-repeat;
+  background-position: center; */
 }
 
 h4 {
@@ -12,42 +15,63 @@ h4 {
 
 
 #mapid { height: 30pc;
-         width: 40pc;        
+         width: 40pc; 
+         border: 2px solid rgba(232, 194, 48, 1);    
+         border-right: 5px solid black;
+         border-top: 5px solid black;
+         border-bottom-right-radius: 8px;
+         border-bottom-left-radius: 2px;   
+        
         }
 
 #mtaChart {
-
-  /* border: solid black 1px; */
   color: rgb(24, 26, 21);
   background-color: rgb(247, 241, 241);
   margin-right: 15px;
+  margin-top:5px;
+  border: 2px solid rgba(232, 194, 48, 1);    
+  border-right: 5px solid black;
+  border-top: 5px solid black;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 2px;    
 }
 
 #mtaTable {
-
-  /* border: solid black 1px; */
   color: rgb(19, 26, 10);
   background-color: rgb(247, 240, 240);
   margin-right: 15px;
+  margin-top:5px;
+  border: 2px solid rgba(232, 194, 48, 1);    
+  border-right: 5px solid black;
+  border-top: 5px solid black;
+  border-bottom-right-radius: 8px;
+  border-top-right-radius: 8px;
+  border-bottom-left-radius: 2px; 
+   
   
 }
 
 .container-fluid {
-
   padding: 5%;
  
 }
 
 #headerTron {
-  /* height:200px; */
-  background-image: url("https://media.wired.com/photos/59546ccdbe605811a2fdcfe4/master/w_1200,c_limit/08-1972-Vignelli-map-extract.jpg");
-  /* background-repeat: no-repeat; */
-  background-size: 50%;
+  border: 5px solid rgba(232, 194, 48, 1);  
+  border-right: 5px solid black;
+  border-top: 20px solid black;
   border-radius: 2px;
+  border-bottom-right-radius: 50px;
+  border-bottom-left-radius: 50px;     
+  height:200px;
+  background-size: 50%;
+  font-family: 'Lora', serif;
 
 }
 
 #title {
   text-align: center;
   color: black;
+  font-family: 'Lora', serif;
 }

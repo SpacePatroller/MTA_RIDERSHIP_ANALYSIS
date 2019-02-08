@@ -16,6 +16,8 @@
         crossorigin=""></script>
     <!-- d3 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- google font -->
+    <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <!-- css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
 
@@ -25,11 +27,13 @@
 <body>
 
     <div class="container-fluid">
-        <div class="row">
-            <div class="col-12 alert alert-light border-0" role="alert">
+
+        <!-- <div class="row">
+            <div class="col-12 alert alert-light border-0" id="title" role="alert">
                 <h4>Metro Transit Data</h4>
             </div>
-        </div>
+        </div> -->
+
         <div class="jumbotron jumbotron-fluid" id="headerTron">
             <div class="container-fluid">
 
@@ -39,19 +43,19 @@
 
         <!-- map -->
         <div class="row">
-            <div class="col big-box border-left-0 rounded-left">
+            <div class="col big-box border-0 rounded-left">
                 <div id="mapid"></div>
             </div>
             <!-- d3chart -->
             <div class="col">
-                <div class="row">
-                    <div class="col mini-box border-0 rounded-right" id="mtaChart">
+                <div class="row" id="mtaChart">
+                    <div class="col mini-box border-0 rounded-right" >
                         <p>Chart will go here</p>
                     </div>
                 </div>
                 <!-- data table -->
-                <div class="row">
-                    <div class="col mini-box border-0 rounded-right" id="mtaTable">
+                <div class="row" id="mtaTable">
+                    <div class="col mini-box border-0 rounded-right" >
                         <p>Table will go here</p>
                     </div>
                 </div>
