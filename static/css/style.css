@@ -1,7 +1,7 @@
 
 body {
 
-  background-color: rgb(223, 232, 233);
+  background-color: rgb(42, 49, 49);
   /* background-image: url("http://cdn8.openculture.com/wp-content/uploads/2014/05/vignelli-subway-map-19721.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -53,7 +53,7 @@ h4 {
 }
 
 .container-fluid {
-  padding: 5%;
+  padding: 1%;
  
 }
 
