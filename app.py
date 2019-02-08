@@ -36,8 +36,6 @@ print(inspector.get_columns('city'))
 
 cities = Base.classes.city
 
-
-
 # route to main index.html template
 @app.route("/")
 def home():
@@ -47,7 +45,6 @@ def home():
 @app.route("/test")
 def test():
     city = session.query(cities.city).all()
-
     return jsonify(city)
 
 if __name__ == "__main__":

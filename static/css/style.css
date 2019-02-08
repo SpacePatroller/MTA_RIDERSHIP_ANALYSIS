@@ -1,40 +1,53 @@
-h1 {
+
+body {
+
+  background-color: rgb(193, 211, 212);
+ 
+}
+
+h4 {
     color: rgb(83, 72, 182);
     text-align: center;
   }
 
 
-#mapid { height: 400px;
-         width: 600px; 
-         
+#mapid { height: 30pc;
+         width: 40pc;        
         }
-
 
 #mtaChart {
 
-  border: solid black 1px;
+  /* border: solid black 1px; */
   color: rgb(24, 26, 21);
-  background-color: grey;
+  background-color: rgb(247, 241, 241);
   margin-right: 15px;
-  
-
 }
 
 #mtaTable {
 
-  border: solid black 1px;
+  /* border: solid black 1px; */
   color: rgb(19, 26, 10);
-  background-color: grey;
+  background-color: rgb(247, 240, 240);
   margin-right: 15px;
   
 }
 
 .container-fluid {
-  margin: 10px;
-  padding: 10px;
+
+  padding: 5%;
+ 
 }
 
 #headerTron {
-  height:200px;
+  /* height:200px; */
+  background-image: url("https://media.wired.com/photos/59546ccdbe605811a2fdcfe4/master/w_1200,c_limit/08-1972-Vignelli-map-extract.jpg");
+  /* background-repeat: no-repeat; */
+  background-size: 50%;
+  border-radius: 2px;
+
 }
 
+#title {
+  text-align: center;
+  color: black;
+}
