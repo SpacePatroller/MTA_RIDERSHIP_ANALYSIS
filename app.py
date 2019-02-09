@@ -14,6 +14,7 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect
+import json
 
 app = Flask(__name__)
 
@@ -22,7 +23,7 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1:3306/sakila'
 # db = SQLAlchemy(app)
 
-engine = create_engine('mysql://root:@127.0.0.1:3306/sakila')
+engine = create_engine('mysql://root:@127.0.0.1:3306/mta')
 
 Base = automap_base()
 Base.prepare(engine, reflect=True)
@@ -32,11 +33,13 @@ inspector = inspect(engine)
 # Get table information
 print(inspector.get_table_names())
 # Get column information
-print(inspector.get_columns('city'))
+print(inspector.get_columns('locations'))
 
-cities = Base.classes.city
+stationLocations = Base.classes.locations
 
 # route to main index.html template
+
+
 @app.route("/")
 def home():
     return render_template("index.html")
@@ -44,8 +47,19 @@ def home():
 
 @app.route("/test")
 def test():
-    city = session.query(cities.city).all()
-    return jsonify(city)
+
+    return (test)
+
+# route to station location data
+
+
+@app.route("/locations")
+def locations():
+    eman = session.query(stationLocations.GTFSLatitude,stationLocations.GTFSLongitude,stationLocations.Division,stationLocations.Stop_Name,stationLocations.Line).all()
+
+    print(eman)
+    return jsonify(eman)
+
 
 if __name__ == "__main__":
     app.run()
