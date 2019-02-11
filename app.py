@@ -14,7 +14,9 @@ from sqlalchemy.orm import Session
 from sqlalchemy import create_engine, func
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect
+from sqlalchemy import distinct
 import json
+import time
 
 app = Flask(__name__)
 
@@ -39,27 +41,25 @@ stationLocations = Base.classes.locations
 
 # route to main index.html template
 
-
 @app.route("/")
 def home():
     return render_template("index.html")
 
-
-@app.route("/test")
-def test():
-
-    return (test)
-
-# route to station location data
-
-
 @app.route("/locations")
 def locations():
-    eman = session.query(stationLocations.GTFSLatitude,stationLocations.GTFSLongitude,stationLocations.Division,stationLocations.Stop_Name,stationLocations.Line).all()
+    # station lat lon and info
+    stationInfo = session.query(stationLocations.GTFSLatitude, stationLocations.GTFSLongitude,
+                                stationLocations.Division, stationLocations.Stop_Name, stationLocations.Line).all()
+    return jsonify(stationInfo)
 
-    print(eman)
-    return jsonify(eman)
+# route to distinct lines/structures/boroughs
+@app.route("/locations/test")
+def test():
+
+    lines = session.query(distinct(stationLocations.Line)).all()
+    return jsonify(lines)
+
 
 
 if __name__ == "__main__":
-    app.run()
+    app.run(debug=True)
