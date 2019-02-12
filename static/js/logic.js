@@ -43,17 +43,21 @@ d3.json(locationUrl).then(function (data) {
         var division = data[m][2];
         // assign text to the markers
         var popup = marker.bindTooltip(`<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`).openTooltip()
-
     }
-
-
 })
 
 
-// // route to distinct user options data 
-// userChoiceUrl = '/locations/test'
-// d3.json(userChoiceUrl).then(function (userData) {
+// route to distinct user options data 
+userChoiceUrl = '/locations/test'
+d3.json(userChoiceUrl).then(function (userData) {
 
-//     console.log(userData)
+    console.log(userData)
 
-// })
+})
+// route to distinct location data
+locationUrl = '/locations'
+d3.json(locationUrl).then(function (data) {
+
+  console.log(data)
+
+})
