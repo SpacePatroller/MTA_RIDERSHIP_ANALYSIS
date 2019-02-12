@@ -15,8 +15,11 @@ from sqlalchemy import create_engine, func
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect
 from sqlalchemy import distinct
+from sqlalchemy.pool import StaticPool
+
 import json
 import time
+
 
 app = Flask(__name__)
 
@@ -25,7 +28,9 @@ app = Flask(__name__)
 # app.config['SQLALCHEMY_DATABASE_URI'] = 'mysql://root:@127.0.0.1:3306/sakila'
 # db = SQLAlchemy(app)
 
-engine = create_engine('mysql://root:@127.0.0.1:3306/mta')
+engine = create_engine('mysql://root:@127.0.0.1:3306/mta',
+    connect_args={'check_same_thread': False},
+    poolclass=StaticPool, echo=True)
 
 Base = automap_base()
 Base.prepare(engine, reflect=True)
@@ -57,6 +62,7 @@ def locations():
 def test():
 
     lines = session.query(distinct(stationLocations.Line)).all()
+
     return jsonify(lines)
 
 
