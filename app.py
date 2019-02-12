@@ -65,8 +65,8 @@ def locations():
 @app.route("/locations/test")
 def test():
 
-    lines = session.query(distinct(locationsData.Line)).all()
-    return jsonify(lines,)
+    distinctLines = session.query(distinct(locationsData.Line)).all()
+    return jsonify(distinctLines)
 
 
 if __name__ == "__main__":
