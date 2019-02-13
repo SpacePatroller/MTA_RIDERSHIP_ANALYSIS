@@ -21,32 +21,33 @@ d3.json(locationUrl).then(function (locations) {
         var stopName = locations[i][3];
         var division = locations[i][2];
         var structure = locations[i][5];
-        // console.log(lat, lon)
 
         switch (locations[i][5]) {
             case 'Elevated':
-                elevated.push(L.marker([lat, lon]));
+                elevated.push(L.marker([lat, lon],{ alt: structure}).bindTooltip(`<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`));
                 break;
             case 'Subway':
-                subway.push(L.marker([lat, lon]));
+                subway.push(L.marker([lat, lon]).bindTooltip(`<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`));
                 break;
             case 'Open Cut':
-                open_cut.push(L.marker([lat, lon]));
+                open_cut.push(L.marker([lat, lon]).bindTooltip(`<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`));
                 break;
             case 'Viaduct':
-                viaduct.push(L.marker([lat, lon]));
+                viaduct.push(L.marker([lat, lon]).bindTooltip(`<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`));
                 break;
             case 'At Grade':
-                at_grade.push(L.marker([lat, lon]));
+                at_grade.push(L.marker([lat, lon]).bindTooltip(`<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`));
                 break;
             case 'Embankment':
-                embankment.push(L.marker([lat, lon]));
+                embankment.push(L.marker([lat, lon]).bindTooltip(`<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`));
                 break;
             default:
                 break;
         }
 
     }
+
+   
 
     //add the groups of markers to layerGroups
     var groupA = L.layerGroup(elevated);
@@ -68,7 +69,7 @@ d3.json(locationUrl).then(function (locations) {
     var map = L.map('mapid', {
         center: new L.LatLng(40.7128, -74.0060),
         zoom: 12,
-        layers: [tileLayer['Structures'], groupA, groupB, groupC, groupD, groupE, groupF] //change this to determine which ones start loaded on screen
+        layers: [tileLayer['Structures'], groupA] //change this to determine which ones start loaded on screen
     });
 
     ///////////Control on the Top Left that handles the switching between A and B
