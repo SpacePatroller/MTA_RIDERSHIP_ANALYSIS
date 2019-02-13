@@ -1,29 +1,16 @@
 
-// var mymap = L.map('mapid', {
-//     center: new L.LatLng(40.7128, -74.0060),
-//     zoom: 9,
-//     layers: [tileLayer['Gray'], groupA, groupB] //change this to determine which ones start loaded on screen
-// });
 
-// // custom icon variable
-// var greenIcon = L.icon({
-//     iconUrl: '/Users/emanshupatel/code/Group_A_Project_2/static/images/iconfinder_Location_05_1530089 (2).png',
-//     iconSize: [38, 95], // size of the icon
-//     shadowSize: [50, 64], // size of the shadow
-//     iconAnchor: [22, 94], // point of the icon which will correspond to marker's location
-//     shadowAnchor: [4, 62],  // the same for the shadow
-//     popupAnchor: [-3, -76] // point from which the popup should open relative to the iconAnchor
-// });
-
-var markersA = [];
-var markersB = [];
-
+var elevated = [];
+var subway = [];
+var open_cut = [];
+var viaduct = [];
+var at_grade = [];
+var embankment = [];
 
 // read in latitudes and longitudes from /locations routes to plot stop markers
 locationUrl = '/locations'
 d3.json(locationUrl).then(function (locations) {
-    // console.log(locations)
-
+    console.log(locations)
 
     //Loop through the initial array and add to two different arrays based on the specified variable
     for (var i = 0; i < locations.length; i++) {
@@ -33,14 +20,27 @@ d3.json(locationUrl).then(function (locations) {
         var line = locations[i][4];
         var stopName = locations[i][3];
         var division = locations[i][2];
-        console.log(lat, lon)
+        var structure = locations[i][5];
+        // console.log(lat, lon)
 
-        switch (locations[i][2]) {
-            case 'BMT':
-                markersA.push(L.marker([lat,lon]));
+        switch (locations[i][5]) {
+            case 'Elevated':
+                elevated.push(L.marker([lat, lon]));
                 break;
-            case 'IRT':
-                markersB.push(L.marker([lat,lon]));
+            case 'Subway':
+                subway.push(L.marker([lat, lon]));
+                break;
+            case 'Open Cut':
+                open_cut.push(L.marker([lat, lon]));
+                break;
+            case 'Viaduct':
+                viaduct.push(L.marker([lat, lon]));
+                break;
+            case 'At Grade':
+                at_grade.push(L.marker([lat, lon]));
+                break;
+            case 'Embankment':
+                embankment.push(L.marker([lat, lon]));
                 break;
             default:
                 break;
@@ -49,12 +49,16 @@ d3.json(locationUrl).then(function (locations) {
     }
 
     //add the groups of markers to layerGroups
-    var groupA = L.layerGroup(markersA);
-    var groupB = L.layerGroup(markersB);
+    var groupA = L.layerGroup(elevated);
+    var groupB = L.layerGroup(subway);
+    var groupC = L.layerGroup(open_cut);
+    var groupD = L.layerGroup(viaduct);
+    var groupE = L.layerGroup(at_grade);
+    var groupF = L.layerGroup(embankment);
 
     //background tile set
     var tileLayer = {
-        'Divisions': L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
+        'Structures': L.tileLayer('https://api.tiles.mapbox.com/v4/{id}/{z}/{x}/{y}.png?access_token={accessToken}', {
             attribution: "Map locations &copy; <a href=\"https://www.openstreetmap.org/\">OpenStreetMap</a> contributors, <a href=\"https://creativecommons.org/licenses/by-sa/2.0/\">CC-BY-SA</a>, Imagery © <a href=\"https://www.mapbox.com/\">Mapbox</a>",
             id: "mapbox.streets",
             accessToken: API_KEY
@@ -64,21 +68,21 @@ d3.json(locationUrl).then(function (locations) {
     var map = L.map('mapid', {
         center: new L.LatLng(40.7128, -74.0060),
         zoom: 12,
-        layers: [tileLayer['Divisions'], groupA, groupB] //change this to determine which ones start loaded on screen
+        layers: [tileLayer['Structures'], groupA, groupB, groupC, groupD, groupE, groupF] //change this to determine which ones start loaded on screen
     });
 
     ///////////Control on the Top Left that handles the switching between A and B
     var overlayMaps = {
-        "BMT": groupA,
-        "IRT": groupB
+        "Elevated": groupA,
+        "Subway": groupB,
+        "Open Cut": groupC,
+        "Viaduct": groupD,
+        "At Grade": groupE,
+        "Embankment": groupF
     };
     L.control.layers(tileLayer, overlayMaps, { position: 'topleft' }).addTo(map);
 
-
 });
-
-
-
 
 ////////////// route to distinct location locations
 

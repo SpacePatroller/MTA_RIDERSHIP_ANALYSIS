@@ -62,14 +62,13 @@ def home():
 def locations():
     # station lat lon and info
     locInfo = session.query(locationsData.GTFS_Latitude, locationsData.GTFS_Longitude,
-                            locationsData.Division, locationsData.Stop_Name, locationsData.Line).all()
+                            locationsData.Division, locationsData.Stop_Name, locationsData.Line,locationsData.Structure).all()
     return jsonify(locInfo)
 
 
 # route to distinct lines/structures/boroughs
 @app.route("/locations/test/<line>")
 def test(line):
-
 
     if line == "":
         lines = session.query(locationsData.GTFS_Latitude).filter(locationsData.GTFS_Latitude == line).all()
