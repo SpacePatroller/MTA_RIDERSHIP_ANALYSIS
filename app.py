@@ -71,10 +71,10 @@ def locations():
 
 
 # route to distinct lines/structures/boroughs
-@app.route("/test")
-def test():
+@app.route("/locations/stopID/<test>")
+def fareInfo(test):
 
-    fareInformation = session.query(fareData.UNIT,fareData.STATION).filter(fareData.Station_ID == 1).all()
+    fareInformation = session.query(fareData.UNIT,fareData.STATION).filter(fareData.Station_ID == test).all()
 
     return jsonify(fareInformation)
 

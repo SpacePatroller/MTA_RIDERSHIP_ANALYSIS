@@ -7,8 +7,6 @@ var greenIcon = L.icon({
     // popupAnchor:  [-3, -76] // point from which the popup should open relative to the iconAnchor
 });
 
-var test = [];
-
 function plotStopsOnMap() {
     // read in latitudes and longitudes from /locations routes to plot stop markers
     locationUrl = '/locations'
@@ -112,16 +110,19 @@ plotStopsOnMap()
 //attach on change function to this
 uniqueStopID = []
 d3.selectAll('#mapid').on("click", function() {
-    console.log(uniqueStopID)
+    
+    fareDataUrl = `/locations/stopID/${uniqueStopID}`;
+    console.log(fareDataUrl)
+    d3.json(fareDataUrl).then(function (faredata) {
+        console.log(faredata)
+
+    });
+
+    
 })
 
 
 
 
-locationUrl = '/locations'
-d3.json(locationUrl).then(function (locations) {
 
-    // console.log(locations)
-
-})
 
