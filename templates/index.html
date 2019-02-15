@@ -16,10 +16,13 @@
         crossorigin=""></script>
     <!-- d3 -->
     <script src="https://d3js.org/d3.v5.min.js"></script>
+    <!-- <script src="https://cdnjs.cloudflare.com/ajax/libs/d3/4.13.0/d3.min.js"></script> -->
     <!-- google font -->
     <link href="https://fonts.googleapis.com/css?family=Lora" rel="stylesheet">
     <!-- css -->
     <link rel="stylesheet" href="{{ url_for('static', filename='css/style.css') }}">
+    <!-- charts js cdn -->
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/Chart.js/2.7.3/Chart.bundle.js"></script>
 
     <title>MTA</title>
 </head>
@@ -50,6 +53,7 @@
             <div class="col">
                 <div class="row" id="mtaChart">
                     <div class="col mini-box border-0 rounded-right" >
+                            <canvas id="myChart" width="400" height="400"></canvas>
                         <p>Chart will go here</p>
                     </div>
                 </div>
