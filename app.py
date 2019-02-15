@@ -27,7 +27,6 @@ import requests
 import queue
 import threading
 
-
 import json
 import time
 
@@ -71,12 +70,43 @@ def locations():
 
 
 # route to distinct lines/structures/boroughs
-@app.route("/locations/stopID/<test>")
-def fareInfo(test):
+@app.route("/locations/stopID/<stationid>")
+def fareInfo(stationid):
 
-    fareInformation = session.query(fareData.UNIT,fareData.STATION).filter(fareData.Station_ID == test).all()
+    # list for of columns to query
+    sel = [
+        fareData.FF,
+        fareData.SEN_DIS,
+        fareData.SEVEN_D_AFAS_UNL,
+        fareData.THIRTY_D_AFAS_RMF_UNL,
+        fareData.JOINT_RR_TKT,
+        fareData.SEVEN_D_UNL,
+        fareData.THIRTY_D_UNL,
+        fareData.FOURTEEN_D_RFM_UNL,
+        fareData.ONE_D_UNL,
+        fareData.FOURTEEN_D_UNL,
+        fareData.SEVEND_XBUS_PASS,
+        fareData.TCMC,
+        fareData.RF_TWO_TRIP,
+        fareData.RR_UNL_NO_TRADE,
+        fareData.TCMC_ANNUAL_MC,
+        fareData.MR_EZPAY_EXP,
+        fareData.MR_EZPAY_UNL,
+        fareData.PATH_TWO_T,
+        fareData.AIRTRAIN_FF,
+        fareData.AIRTRAIN_THIRTY_D,
+        fareData.AIRTRAIN_TEN_T,
+        fareData.AIRTRAIN_MTHLY,
+        fareData.STUDENTS,
+        fareData.NICE_TWO_T,
+        fareData.CUNY_ONETWENTY,
+        fareData.CUNY_SIXTY
+    
+    ]
 
-    return jsonify(fareInformation)
+    fareInformation = session.query(fareData.STATION).filter(fareData.Station_ID == stationid).all()
+    fareCountInformation = (session.query(*sel).filter(fareData.Station_ID == stationid ).all())
+    return jsonify(fareInformation,fareCountInformation)
 
 # @app.errorhandler(404)
 # def page_not_found(e):
