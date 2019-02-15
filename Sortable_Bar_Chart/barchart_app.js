@@ -1,8 +1,8 @@
 
 
 // Load and munge data, then make the visualization.
-  var fileName = "data.csv";
-  var nutritionFields = ["FF", "30-D UNL","7-D UNL", "SEN/DIS", "7-D AFAS UNL","30-D AFAS/RMF UNL", 
+  var fileName = "data/fares_190209.csv";
+  var fareType = ["FF", "30-D UNL","7-D UNL", "SEN/DIS", "7-D AFAS UNL","30-D AFAS/RMF UNL", 
       "JOINT RR TKT", "14-D RFM UNL", "1-D UNL", "14-D UNL", "7D-XBUS PASS", "TCMC", 
       "RF 2 TRIP", "RR UNL NO TRADE", "TCMC ANNUAL MC", "MR EZPAY EXP", "MR EZPAY UNL", "PATH 2-T", 
       "AIRTRAIN FF", "AIRTRAIN 30-D", "AIRTRAIN 10-T", "AIRTRAIN MTHLY", "STUDENTS", "NICE 2-T", 
@@ -10,21 +10,21 @@
 
 // ["FF","SEN/DIS", "7-D AFAS UNL", "30-D AFAS/RMF UNL", "JOINT RR TKT", "7-D UNL", "30-D UNL", "7D-XBUS PASS", "TCMC", "RF 2 TRIP", "RR UNL NO TRADE", "TCMC ANNUAL MC", "MR EZPAY EXP", "MR EZPAY UNL", "PATH 2-T","AIRTRAIN FF","STUDENTS","CUNY-120"];
   d3.csv(fileName, function(error, data) {
-    var cerealMap = {};
+    var stationMap = {};
     data.forEach(function(d) {
-      var cereal = d.STATION;
-      cerealMap[cereal] = [];
-      console.log(cerealMap)
+      var station = d.STATION;
+      stationMap[station] = [];
+      console.log(stationMap)
 
-      // { cerealName: [ bar1Val, bar2Val, ... ] }
+      // { stationName: [ bar1Val, bar2Val, ... ] }
       nutritionFields.forEach(function(field) {
-        cerealMap[cereal].push( +d[field] );
+        stationMap[station].push( +d[field] );
       });
     });
-    makeVis(cerealMap);
+    makeVis(stationMap);
     });
 
-    var makeVis = function(cerealMap) {
+    var makeVis = function(stationMap) {
        // Define dimensions of vis
        var margin = { top: 30, right: 50, bottom: 80, left: 50 },
        width  = 1000 - margin.left - margin.right,
@@ -32,7 +32,7 @@
 
       // Make x scale
       var xScale = d3.scaleBand()
-          .domain(nutritionFields)
+          .domain(fareType)
           .padding([0.1])
           .range([0, width]);
       ``    
@@ -99,7 +99,7 @@
             bars.enter()
               .append("rect")
               .attr("class", "bar")
-              .attr("x", function(d,i) { return xScale( nutritionFields[i] ); })
+              .attr("x", function(d,i) { return xScale( fareType[i] ); })
               .attr('width', xScale.bandwidth())
               .attr("y", function(d,i) { return yScale(d); })
               .attr("height", function(d,i) { return height - yScale(d); });
@@ -116,27 +116,27 @@
 
         // Handler for dropdown value change
         var dropdownChange = function() {
-            var newCereal = d3.select(this).property('value'),
-                newData   = cerealMap[newCereal];
+            var newStation = d3.select(this).property('value'),
+                newData   = stationMap[newStation];
 
             updateBars(newData);
         };
 
-        // Get names of cereals, for dropdown
-        var cereals = Object.keys(cerealMap).sort();
+        // Get names of stations for dropdown
+        var stations = Object.keys(stationMap).sort();
 
         var dropdown = d3.select("#vis-container")
             .insert("select", "svg")
             .on("change", dropdownChange);
 
         dropdown.selectAll("option")
-            .data(cereals)
+            .data(stations)
             .enter().append("option")
             .attr("value", function (d) { return d; })
             .text(function (d) {
                 return d[0].toUpperCase() + d.slice(1,d.length); // capitalize 1st letter
             });
 
-        var initialData = cerealMap[ cereals[0] ];
+        var initialData = stationMap[ stations[0] ];
         updateBars(initialData);
     };
