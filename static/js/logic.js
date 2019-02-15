@@ -91,35 +91,46 @@ function plotStopsOnMap() {
         };
         // L.control.layers(tileLayer, overlayMaps, { position: 'topleft' }).addTo(map);
 
-       // grab unique stop id and push to array if array is greater then one remove last item.
-            var markerIconValue = d3.selectAll(".leaflet-marker-icon");
-            markerIconValue.on("click", function () {
-                work = d3.select(this).attr("alt")
-                uniqueStopID.unshift(+work)
-                if (uniqueStopID.length > 1) {uniqueStopID.pop()}
-            })
+        // grab unique stop id and push to array if array is greater then one remove last item.
+        var markerIconValue = d3.selectAll(".leaflet-marker-icon");
+        markerIconValue.on("click", function () {
+            work = d3.select(this).attr("alt")
+            uniqueStopID.unshift(+work)
+            if (uniqueStopID.length > 1) { uniqueStopID.pop() }
+        })
 
-            return emanshu = d3.selectAll(".leaflet-marker-icon")
-                
+        return emanshu = d3.selectAll(".leaflet-marker-icon")
+
     });
-        
+
 }
 
 plotStopsOnMap()
 
-//attach on change function to this
+// on stop click grab station id and build chart
 uniqueStopID = []
-d3.selectAll('#mapid').on("click", function() {
-    
+d3.selectAll('#mapid').on("click", function () {
+    //build url for query based off station id
     fareDataUrl = `/locations/stopID/${uniqueStopID}`;
-    console.log(fareDataUrl)
+    // console.log(fareDataUrl)
+
+    // read in data from route
     d3.json(fareDataUrl).then(function (faredata) {
         console.log(faredata)
 
-    });
 
-    
-})
+        var stationMap = {};
+       for (q=0;q < faredata.length;q++) {
+            var station = faredata[q][1];
+            stationMap[station] = [];
+            console.log(stationMap)
+            // console.log(station)
+       }
+       
+        });
+
+
+    })
 
 
 
