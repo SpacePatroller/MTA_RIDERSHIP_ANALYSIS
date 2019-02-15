@@ -45,7 +45,7 @@
           .range([height, 0]);
 
       // Create canvas
-      var canvas = d3.select("#vis-container")
+      var canvas = d3.select("#mtaChart")
         .append("svg")
         .attr("width",  width  + margin.left + margin.right)
         .attr("height", height + margin.top  + margin.bottom)
@@ -125,7 +125,7 @@
         // Get names of stations for dropdown
         var stations = Object.keys(stationMap).sort();
 
-        var dropdown = d3.select("#vis-container")
+        var dropdown = d3.select("#mtaChart")
             .insert("select", "svg")
             .on("change", dropdownChange);
 
