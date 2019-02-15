@@ -126,37 +126,29 @@ d3.selectAll('#mapid').on("click", function () {
     // read in data from route
     d3.json(fareDataUrl).then(function (faredata) {
         // console.log(faredata)
-        console.log(`Station ${faredata[0]}`)
-        console.log(`Fares ${faredata[1]}`)
-        fareData = faredata;
+        // console.log(`Station ${faredata[0]}`)
+        // console.log(`Fares ${faredata[1]}`)
         var station = faredata[0];
         var fares = faredata[1];
 
-        // create dict that holds stations
-        var stationMap = {station:fares}; // create an empty array
-        // // push key and values to dict
-        // stationMap.push({
-        //     key: station,
-        //     value: fares,
-        // });
-        console.log(`station map ${stationMap}`)
+        // // create dict that holds stations   
+        var stationMap = {};
 
-        makeVis(fareData);
+        stationMap[faredata[0]] = faredata[1];
+
+        console.log(stationMap);
+
+        // makeVis(fareData);
         var nutritionFields = ["FF", "30-D UNL", "7-D UNL", "SEN/DIS", "7-D AFAS UNL", "30-D AFAS/RMF UNL",
             "JOINT RR TKT", "14-D RFM UNL", "1-D UNL", "14-D UNL", "7D-XBUS PASS", "TCMC",
             "RF 2 TRIP", "RR UNL NO TRADE", "TCMC ANNUAL MC", "MR EZPAY EXP", "MR EZPAY UNL", "PATH 2-T",
             "AIRTRAIN FF", "AIRTRAIN 30-D", "AIRTRAIN 10-T", "AIRTRAIN MTHLY", "STUDENTS", "NICE 2-T",
             "CUNY-120", "CUNY-60"];
 
-        // { cerealName: [ bar1Val, bar2Val, ... ] }
-        // nutritionFields.forEach(function (field) {
-        //     stationMap[station].push([field]);
-        // });
-
-        
+            makeVis(stationMap);
     });
 
-    var makeVis = function (fareData) {
+    var makeVis = function (stationMap) {
         // Define dimensions of vis
         var margin = { top: 30, right: 50, bottom: 80, left: 50 },
             width = 1000 - margin.left - margin.right,
@@ -167,6 +159,7 @@ d3.selectAll('#mapid').on("click", function () {
             .domain(fareType)
             .padding([0.1])
             .range([0, width]);
+    
     
         // .rangeRound([0, width], 0.1);
     
@@ -231,14 +224,14 @@ d3.selectAll('#mapid').on("click", function () {
                 .attr("class", "bar")
                 .attr("x", function (d, i) { return xScale(fareType[i]); })
                 .attr('width', xScale.bandwidth())
-                .attr("y", yScale(fares))
-                .attr("height",  height - yScale(fares));
+                .attr("y", function (d, i) { return yScale(d); })
+                .attr("height", function (d, i) { return height - yScale(d); });
     
             // Update old ones, already have x / width from before
             bars
                 .transition().duration(250)
-                .attr("y",  yScale(fares))
-                .attr("height",  height - yScale(fares));
+                .attr("y", function (d, i) { return yScale(d); })
+                .attr("height", function (d, i) { return height - yScale(d); });
     
             // Remove old ones
             bars.exit().remove();
@@ -260,7 +253,7 @@ d3.selectAll('#mapid').on("click", function () {
             .on("change", dropdownChange);
     
         dropdown.selectAll("option")
-            .data(station)
+            .data(stations)
             .enter().append("option")
             .attr("value", function (d) { return d; })
             .text(function (d) {
@@ -270,7 +263,14 @@ d3.selectAll('#mapid').on("click", function () {
         var initialData = stationMap[stations[0]];
         updateBars(initialData);
     };
-    
+
+
+
+
+
+
+
+
 
 
 
@@ -286,15 +286,39 @@ d3.selectAll('#mapid').on("click", function () {
 
 
 /////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
+/////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
+/////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
+/////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
 
 // fareDataUrl = '/locations/stopID/1';
-// // console.log(fareDataUrl)
+// console.log(fareDataUrl)
 
 // // read in data from route
 // d3.json(fareDataUrl).then(function (faredata) {
 //     console.log(`Station ${faredata[0]}`)
 //     console.log(`Fares ${faredata[1]}`)
 
+
+//     //////option one from first screen shot
+
+//     // var dict = []; // create an empty array
+
+//     // dict.push({
+//     //     key:   `"${faredata[0]}"`,
+//     //     value: faredata[1]
+//     // });
+
+//     // console.log(dict)
+
+
+
+
+//     ////// option two for dict from screen shot
+// // var dict = {};
+
+// // dict[faredata[0]] = faredata[1];
+
+// // console.log(dict);
 
 
 
