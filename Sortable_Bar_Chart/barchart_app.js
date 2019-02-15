@@ -17,7 +17,7 @@
       console.log(stationMap)
 
       // { stationName: [ bar1Val, bar2Val, ... ] }
-      nutritionFields.forEach(function(field) {
+      fareType.forEach(function(field) {
         stationMap[station].push( +d[field] );
       });
     });
