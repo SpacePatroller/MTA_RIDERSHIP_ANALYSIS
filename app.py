@@ -19,7 +19,8 @@ from sqlalchemy import create_engine, func
 from flask_sqlalchemy import SQLAlchemy
 from sqlalchemy import inspect
 from sqlalchemy.engine import reflection
-from sqlalchemy import distinct
+from sqlalchemy import distinct 
+from sqlalchemy import text
 from sqlalchemy.pool import StaticPool
 import requests
 
@@ -41,7 +42,10 @@ engine = create_engine("sqlite:///mta.db.sqlite",
 # reflect the tables
 Base.prepare(engine, reflect=True)
 
+# connection to station location table
 locationsData = Base.classes.stationLocationData
+# connecton to fare data table
+fareData = Base.classes.fareData
 
 inspector = inspect(engine)
 print(inspector.get_table_names())
@@ -62,31 +66,22 @@ def home():
 def locations():
     # station lat lon and info
     locInfo = session.query(locationsData.GTFS_Latitude, locationsData.GTFS_Longitude,
-                            locationsData.Division, locationsData.Stop_Name, locationsData.Line,locationsData.Structure).all()
+                            locationsData.Division, locationsData.Stop_Name, locationsData.Line, locationsData.Structure, locationsData.Station_ID).all()
     return jsonify(locInfo)
 
 
 # route to distinct lines/structures/boroughs
-@app.route("/locations/test/<line>")
-def test(line):
+@app.route("/test")
+def test():
 
-    if line == "":
-        lines = session.query(locationsData.GTFS_Latitude).filter(locationsData.GTFS_Latitude == line).all()
-        return jsonify(lines)
-    else:
-        lines = session.query(locationsData.GTFS_Latitude).all()
-        return jsonify(lines)
+    fareInformation = session.query(fareData.UNIT,fareData.STATION).filter(fareData.Station_ID == 1).all()
 
-@app.errorhandler(404)
-def page_not_found(e):
-    return ("O something went wrong")
-    
+    return jsonify(fareInformation)
 
+# @app.errorhandler(404)
+# def page_not_found(e):
+#     return ("O something went wrong")
 
-
-
-    
 
 if __name__ == "__main__":
     app.run(debug=True)
-
