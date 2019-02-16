@@ -7,7 +7,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
           days = ["Sa","Su","Mo", "Tu", "We", "Th", "Fr"],
           times = ["3a", "7a", "11a", "3p", "7p", "11p"];
-          datasets = ["turnstiles_test.csv","other_test.csv"]
+          datasets = ["Entries","Exits","Total Activity"]
 
       var svg = d3.select("#chart").append("svg")
           .attr("width", width + margin.left + margin.right)
@@ -38,25 +38,34 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
       var parser = d3.timeParse("%m/%d/%Y");
       var formatter = d3.time.format("%w");
 
-      var heatmapChart = function(dataset) {
-        d3.csv(dataset,
+      var heatmapChart = function(column) {
+        d3.csv("turnstiles_test.csv",
         function(d) {
           return {
             DATE: formatter(parser(d.DATE)),
             TIME: d.TIME.slice(0, d.TIME.indexOf(':')),
-            EXITS: +d.EXITS,
-            ENTRIES: +d.ENTRIES
+            ExitsDiff: +d.ExitsDiff,
+            EntriesDiff: +d.EntriesDiff,
+            Total: +d.Total
           };
         },
 
         function(error, data) {
+
+          if (column == "Entries") {
+            column = "EntriesDiff"
+          } else if (column == "Exits") {
+            column = "ExitsDiff"
+          } else {
+            column = "Total"
+          }
 
           console.log(data)
 
           formatComma = d3.format(",")
 
           var colorScale = d3.scale.quantile()
-              .domain([d3.min(data, function (d) { return d.ENTRIES - d.EXITS; }), d3.max(data, function (d) { return d.ENTRIES - d.EXITS; })])
+              .domain([d3.min(data, function (d) { return d[column]; }), d3.max(data, function (d) { return d[column]; })])
               .range(colors);
 
           var cards = svg.selectAll(".hour")
@@ -79,9 +88,9 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
               .style("fill", colors[0]);
 
           cards.transition().duration(1000)
-              .style("fill", function(d) { return colorScale(d.ENTRIES - d.EXITS); });
+              .style("fill", function(d) { return colorScale(d[column]); });
 
-          cards.select("title").text(function(d) { return d.ENTRIES - d.EXITS; });
+          cards.select("title").text(function(d) { return d[column]; });
           
           cards.exit().remove();
 
@@ -121,7 +130,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           var toolTip = d3.tip()
             .attr("class", "tooltip")
             .html(function(d) {
-            return (`${timeString(d.TIME)}<hr>${formatComma(d.ENTRIES - d.EXITS)}`);
+            return (`${timeString(d.TIME)}<hr>${formatComma(d[column])}`);
             });
 
           cards.on("mouseover", function(d) {
@@ -136,14 +145,14 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
         });  
       };
 
-      heatmapChart(datasets[0]);
+      heatmapChart("Entries");
 
       var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
         .data(datasets);
 
       datasetpicker.enter()
         .append("input")
-        .attr("value", function(d){ return "Dataset " + d })
+        .attr("value", function(d){ return d })
         .attr("type", "button")
         .attr("class", "dataset-button")
         .on("click", function(d) {
