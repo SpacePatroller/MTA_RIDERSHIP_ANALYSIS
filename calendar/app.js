@@ -5,8 +5,9 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
           legendElementHeight = gridSize/(9/7),
           buckets = 9,
           colors = ["#ffffd9","#edf8b1","#c7e9b4","#7fcdbb","#41b6c4","#1d91c0","#225ea8","#253494","#081d58"], // alternatively colorbrewer.YlGnBu[9]
-          days = ["Mo", "Tu", "We", "Th", "Fr", "Sa", "Su"],
+          days = ["Sa","Su","Mo", "Tu", "We", "Th", "Fr"],
           times = ["3a", "7a", "11a", "3p", "7p", "11p"];
+          datasets = ["turnstiles_test.csv","other_test.csv"]
 
       var svg = d3.select("#chart").append("svg")
           .attr("width", width + margin.left + margin.right)
@@ -50,13 +51,13 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
 
         function(error, data) {
 
+          console.log(data)
+
           formatComma = d3.format(",")
 
           var colorScale = d3.scale.quantile()
               .domain([d3.min(data, function (d) { return d.ENTRIES - d.EXITS; }), d3.max(data, function (d) { return d.ENTRIES - d.EXITS; })])
               .range(colors);
-
-          console.log(colorScale.quantiles());
 
           var cards = svg.selectAll(".hour")
               .data(data, function(d) {return d.DATE+':'+d.TIME;});
@@ -65,7 +66,11 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
 
           cards.enter().append("rect")
               .attr("x", function(d) { return Math.floor(d.TIME / 4) * gridSize; })
-              .attr("y", function(d) { return (d.DATE) * gridSize; })
+              .attr("y", function(d) { if (d.DATE === "6") {
+                                       return 0}
+                                      else {
+                                        return ((d.DATE) * gridSize) + gridSize;
+                                      }})
               .attr("rx", 4)
               .attr("ry", 4)
               .attr("class", "hour bordered")
@@ -119,4 +124,16 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
         });  
       };
 
-      heatmapChart("turnstiles_test.csv");
+      heatmapChart(datasets[0]);
+
+      var datasetpicker = d3.select("#dataset-picker").selectAll(".dataset-button")
+        .data(datasets);
+
+      datasetpicker.enter()
+        .append("input")
+        .attr("value", function(d){ return "Dataset " + d })
+        .attr("type", "button")
+        .attr("class", "dataset-button")
+        .on("click", function(d) {
+          heatmapChart(d);
+        });
