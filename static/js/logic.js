@@ -124,7 +124,7 @@ function plotStopsOnMap() {
     }
     // L.control.layers(tileLayer, overlayMaps, { position: 'topleft' }).addTo(map);
 
-    // grab unique stop id and push to array if array is greater then one remove last item.
+    // grab unique stop id and push to array if array is greater then one remove last item. on line 141
     var markerIconValue = d3.selectAll('.leaflet-marker-icon')
     markerIconValue.on('click', function() {
       work = d3.select(this).attr('alt')
@@ -137,11 +137,12 @@ function plotStopsOnMap() {
     return (emanshu = d3.selectAll('.leaflet-marker-icon'))
   })
 }
-
 plotStopsOnMap()
 
+// unique stop id created withing map on click function
 uniqueStopID = []
 
+// chart that displays diffrent fare information
 function baseChart() {
   fareDataUrl1 = `/fareData`
   // console.log(fareDataUrl1)
@@ -236,7 +237,7 @@ function baseChart() {
           // console.log(`Fares ${faredata[1]}`)
           for (x = 0; x < faredata.length; x++) {
             var fares = faredata[x][0]
-            console.log(fares)
+            // console.log(fares)
 
             removeData(myChart)
 
@@ -264,7 +265,16 @@ function baseChart() {
     }
   })
 }
-
 baseChart()
 
-//dafd
+// codys chart
+
+function heatmap() {
+  heatURL = '/locations/turnstile'
+
+  d3.json(heatURL).then(function(heatData) {
+    console.log(heatData)
+  })
+}
+
+heatmap()

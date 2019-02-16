@@ -157,9 +157,11 @@ def fareInfo(stationid):
 @app.route("/locations/turnstile")
 def turnstile():
 
-    data = session.query(turnstileData.REMOTE).all()
+    data = session.query(turnstileData.DATE, turnstileData.TIME, turnstileData.ENTRIES_DIFF,
+                         turnstileData.EXITS_DIFF, turnstileData.TOTAL_ACTIVITY).filter(turnstileData.Station_ID == 1).all()
 
     return jsonify(data)
+
 
     # @app.errorhandler(404)
     # def page_not_found(e):
