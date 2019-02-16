@@ -267,47 +267,4 @@ function baseChart() {
 
 baseChart()
 
-/////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
-/////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
-/////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
-/////////////////////////////test////////////////////test/////////////////////////////////////test////////////////////test
-
-///////////////////////////////////////// diffrent chart type ///////////////////
-
-// on click grab the station id and query the route based on that information.
-// d3.selectAll('#mapid').on('click', function() {
-//   fareDataUrl = `/locations/stopID/${uniqueStopID}`
-//   console.log('test')
-//   // read in data from route
-//   d3.json(fareDataUrl).then(function(faredata) {
-//     console.log(faredata)
-//     // console.log(`Station ${faredata[0]}`)
-//     // console.log(`Fares ${faredata[1]}`)
-//     for (x = 0; x < faredata.length; x++) {
-//       var fares = faredata[1][x]
-//       console.log(`Fares list`)
-//       console.log(fares)
-
-//       // function to remove data from chart
-//       removeData(myChart)
-//       addData(myChart, fares)
-//     }
-
-//     function removeData(chart) {
-//       // chart.data.labels.pop();
-//       chart.data.datasets.forEach(dataset => {
-//         dataset.data = []
-//       })
-//       chart.update()
-//     }
-
-//     function addData(chart, data) {
-//       // chart.data.labels.push(label)
-//       chart.data.datasets.forEach(dataset => {
-//         dataset.data = data
-//       })
-//       // console.log(`New data: ${chart.data}`)
-//       chart.update()
-//     }
-//   })
-// })
+//dafd
