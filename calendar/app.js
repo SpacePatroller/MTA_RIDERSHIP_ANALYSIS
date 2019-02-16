@@ -23,7 +23,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
             .attr("y", function (d, i) { return i * gridSize; })
             .style("text-anchor", "end")
             .attr("transform", "translate(-6," + gridSize / 1.5 + ")")
-            .attr("class", function (d, i) { return ((i >= 0 && i <= 4) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
+            .attr("class", function (d, i) { return ((i >= 2 && i <= 6) ? "dayLabel mono axis axis-workweek" : "dayLabel mono axis"); });
 
       var timeLabels = svg.selectAll(".timeLabel")
           .data(times)
@@ -33,7 +33,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
             .attr("y", 0)
             .style("text-anchor", "middle")
             .attr("transform", "translate(" + gridSize / 2 + ", -6)")
-            .attr("class", function(d, i) { return ((i >= 7 && i <= 16) ? "timeLabel mono axis axis-worktime" : "timeLabel mono axis"); });
+            .attr("class", "timeLabel mono axis axis-worktime");
 
       var parser = d3.timeParse("%m/%d/%Y");
       var formatter = d3.time.format("%w");
@@ -106,10 +106,22 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
 
           legend.exit().remove();
 
+          function timeString(time) {
+            if (time == "3") {
+              return "11p - 3a"
+            } else if(time < 12) {
+              return `${time-4}a - ${time}a`
+            } else if(time < 17) {
+              return `${time-4}a - ${time-12}p`
+            } else {
+              return `${time-16}p - ${time-12}p`
+            }
+          };
+
           var toolTip = d3.tip()
             .attr("class", "tooltip")
             .html(function(d) {
-            return (formatComma(d.ENTRIES - d.EXITS));
+            return (`${timeString(d.TIME)}<hr>${formatComma(d.ENTRIES - d.EXITS)}`);
             });
 
           cards.on("mouseover", function(d) {
