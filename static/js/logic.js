@@ -350,7 +350,7 @@ var heatmapChart = function(column) {
   var formatter = d3.timeFormat('%w')
   // read in turnstile route data
   d3.json(heatURL, function(heatData) {
-    // console.log(data)
+    console.log(heatData)
     // create an empty array
     var data = []
     // loop through turnstile data and push to data array
@@ -365,14 +365,13 @@ var heatmapChart = function(column) {
       // where the code change ends
     }
 
-    // function(error, data) {
-    //   if (column == 'Entries') {
-    //     column = 'EntriesDiff'
-    //   } else if (column == 'Exits') {
-    //     column = 'ExitsDiff'
-    //   } else {
-    //     column = 'Total'
-    //   }
+    // if (column == 'Entries') {
+    //   column = 'EntriesDiff'
+    // } else if (column == 'Exits') {
+    //   column = 'ExitsDiff'
+    // } else {
+    //   column = 'Total'
+    // }
 
     console.log(data)
 
@@ -493,7 +492,6 @@ var heatmapChart = function(column) {
       })
 
     cards.call(toolTip)
-    // }
   })
 }
 
