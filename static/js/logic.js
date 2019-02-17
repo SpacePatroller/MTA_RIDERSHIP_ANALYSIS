@@ -267,14 +267,46 @@ function baseChart() {
 }
 baseChart()
 
-// codys chart
+////////////////////// codys chart ///////////////////////////
 
-function heatmap() {
-  heatURL = '/locations/turnstile'
+// function heatmap() {
+//   heatURL = '/locations/turnstile'
+//   var parser = d3.timeParse('%m/%d/%Y')
+//   var formatter = d3.timeFormat('%w')
 
-  d3.json(heatURL).then(function(heatData) {
-    console.log(heatData)
-  })
-}
+//   d3.json(heatURL).then(function(heatData) {
+//     for (x = 0; x < heatData.length; x++) {
+//       return {
+//         DATE: formatter(parser(heatData[x][0])),
+//         TIME: heatData[x][1].slice(0, heatData[x][1].indexOf(':')),
+//         EntriesDiff: heatData[x][2],
+//         ExitsDiff: heatData[x][3],
+//         Total: heatData[x][4]
+//       }
+//     }
+//   })
+// }
 
-heatmap()
+// heatmap()
+
+heatURL = '/locations/turnstile'
+var parser = d3.timeParse('%m/%d/%Y')
+var formatter = d3.timeFormat('%w')
+
+d3.json(heatURL).then(function(heatData) {
+  // console.log(data)
+
+  // create an empty array
+  var dict = []
+  for (x = 0; x < heatData.length; x++) {
+    dict.push({
+      DATE: formatter(parser(heatData[x][0])),
+      TIME: heatData[x][1].slice(0, heatData[x][1].indexOf(':')),
+      ExitDiff: heatData[x][2],
+      EntriesDiff: heatData[x][3],
+      Total: heatData[x][4]
+    })
+  }
+
+  console.log(dict)
+})
