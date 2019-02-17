@@ -60,7 +60,6 @@ app = Flask(__name__)
 
 @app.route("/")
 def home():
-
     return render_template("index.html")
 
 
@@ -158,7 +157,7 @@ def fareInfo(stationid):
 def turnstile():
 
     data = session.query(turnstileData.DATE, turnstileData.TIME, turnstileData.ENTRIES_DIFF,
-                         turnstileData.EXITS_DIFF, turnstileData.TOTAL_ACTIVITY).filter(turnstileData.Station_ID == 1).all()
+                         turnstileData.EXITS_DIFF, turnstileData.TOTAL_ACTIVITY).filter(turnstileData.Station_ID == 9).all()
 
     return jsonify(data)
 
