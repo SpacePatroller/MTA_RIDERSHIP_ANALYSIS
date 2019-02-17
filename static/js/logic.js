@@ -365,17 +365,14 @@ var heatmapChart = function(column) {
       // where the code change ends
     }
 
-    function(error, data) {
-      if (column == 'Entries') {
-        column = 'EntriesDiff'
-      } else if (column == 'Exits') {
-        column = 'ExitsDiff'
-      } else {
-        column = 'Total'
-      }
-    
-
-
+    // function(error, data) {
+    //   if (column == 'Entries') {
+    //     column = 'EntriesDiff'
+    //   } else if (column == 'Exits') {
+    //     column = 'ExitsDiff'
+    //   } else {
+    //     column = 'Total'
+    //   }
 
     console.log(data)
 
@@ -496,9 +493,8 @@ var heatmapChart = function(column) {
       })
 
     cards.call(toolTip)
-    }
+    // }
   })
-
 }
 
 heatmapChart('Entries')
