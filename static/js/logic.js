@@ -296,7 +296,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
   ], // alternatively colorbrewer.YlGnBu[9]
   days = ['Sa', 'Su', 'Mo', 'Tu', 'We', 'Th', 'Fr'],
   times = ['3a', '7a', '11a', '3p', '7p', '11p']
-datasets = ['Entries', 'Exits', 'Total Activity']
+datasets = ['Entries', 'Exits', 'Total_Activity']
 
 var svg = d3
   .select('#heatChart')
@@ -345,7 +345,8 @@ var timeLabels = svg
 // where the code changes
 
 var heatmapChart = function(column) {
-  heatURL = '/locations/turnstile'
+  console.log(uniqueStopID)
+  heatURL = `/locations/turnstile/${uniqueStopID}`
   var parser = d3.timeParse('%m/%d/%Y')
   var formatter = d3.timeFormat('%w')
   // read in turnstile route data
@@ -358,9 +359,9 @@ var heatmapChart = function(column) {
       data.push({
         DATE: formatter(parser(heatData[x][0])),
         TIME: heatData[x][1].slice(0, heatData[x][1].indexOf(':')),
-        ExitsDiff: heatData[x][2],
-        EntriesDiff: heatData[x][3],
-        Total: heatData[x][4]
+        Exits: heatData[x][2],
+        Entries: heatData[x][3],
+        Total_Activity: heatData[x][4]
       })
       // where the code change ends
     }

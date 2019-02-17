@@ -46,7 +46,7 @@ locationsData = Base.classes.stationLocationData
 # connecton to fare data table
 fareData = Base.classes.fareData
 
-turnstileData = Base.classes.turnStileData
+turnStileData = Base.classes.turnStileData
 
 inspector = inspect(engine)
 print(inspector.get_table_names())
@@ -153,11 +153,16 @@ def fareInfo(stationid):
     return jsonify(fareInformation, fareCountInformation)
 
 
-@app.route("/locations/turnstile")
+@app.route("/locations/turnstile/")
 def turnstile():
 
-    data = session.query(turnstileData.DATE, turnstileData.TIME, turnstileData.ENTRIES_DIFF,
-                         turnstileData.EXITS_DIFF, turnstileData.TOTAL_ACTIVITY).filter(turnstileData.Station_ID == 9).all()
+    data = session.query((turnStileData.DATE),
+                         (turnStileData.TIME),
+                         func.sum(turnStileData.ENTRIES_DIFF),
+                         func.sum(turnStileData.EXITS_DIFF),
+                         func.sum(turnStileData.TOTAL_ACTIVITY),
+
+                         ).group_by(turnStileData.DATE, turnStileData.TIME).all()
 
     return jsonify(data)
 
@@ -165,5 +170,7 @@ def turnstile():
     # @app.errorhandler(404)
     # def page_not_found(e):
     #     return ("O something went wrong")
+if __name__ == "__main__":
+    app.run(debug=True)
 if __name__ == "__main__":
     app.run(debug=True)
