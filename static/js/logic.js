@@ -358,12 +358,24 @@ var heatmapChart = function(column) {
       data.push({
         DATE: formatter(parser(heatData[x][0])),
         TIME: heatData[x][1].slice(0, heatData[x][1].indexOf(':')),
-        ExitDiff: heatData[x][2],
+        ExitsDiff: heatData[x][2],
         EntriesDiff: heatData[x][3],
         Total: heatData[x][4]
       })
+      // where the code change ends
     }
-    // where the code change ends
+
+    function(error, data) {
+      if (column == 'Entries') {
+        column = 'EntriesDiff'
+      } else if (column == 'Exits') {
+        column = 'ExitsDiff'
+      } else {
+        column = 'Total'
+      }
+    
+
+
 
     console.log(data)
 
@@ -484,7 +496,9 @@ var heatmapChart = function(column) {
       })
 
     cards.call(toolTip)
+    }
   })
+
 }
 
 heatmapChart('Entries')
