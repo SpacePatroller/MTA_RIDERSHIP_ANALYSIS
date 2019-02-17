@@ -144,7 +144,7 @@ plotStopsOnMap()
 uniqueStopID = []
 
 // chart that displays diffrent fare information
-function baseChart() {
+function fareChart() {
   fareDataUrl1 = `/fareData`
   // console.log(fareDataUrl1)
 
@@ -229,7 +229,7 @@ function baseChart() {
       ///////////////////////////////
 
       // on click grab the station id and query the route based on that information.
-      d3.selectAll('#mapid').on('click', function() {
+      d3.selectAll('#mapid').on('mouseover', function() {
         fareDataUrl = `/locations/stopID/${uniqueStopID}`
 
         // read in data from route
@@ -267,9 +267,9 @@ function baseChart() {
     }
   })
 }
-baseChart()
+fareChart()
 
-////////////////////// codys chart ///////////////////////////
+//////////////////// heat map chart ////////////////////////
 
 var margin = { top: 50, right: 0, bottom: 100, left: 30 },
   width = 960 - margin.left - margin.right,
@@ -293,7 +293,7 @@ var margin = { top: 50, right: 0, bottom: 100, left: 30 },
 datasets = ['Entries', 'Exits', 'Total Activity']
 
 var svg = d3
-  .select('#chart')
+  .select('#heatChart')
   .append('svg')
   .attr('width', width + margin.left + margin.right)
   .attr('height', height + margin.top + margin.bottom)
