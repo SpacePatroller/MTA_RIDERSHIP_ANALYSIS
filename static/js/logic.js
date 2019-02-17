@@ -10,7 +10,8 @@ var greenIcon = L.icon({
 function plotStopsOnMap() {
   // read in latitudes and longitudes from /locations routes to plot stop markers
   locationUrl = '/locations'
-  d3.json(locationUrl).then(function(locations) {
+  // this changed from d3.json(locationurl).then(function (locations) {})
+  d3.json(locationUrl, function(locations) {
     // console.log(locations)
 
     var elevated = []
@@ -148,7 +149,7 @@ function baseChart() {
   // console.log(fareDataUrl1)
 
   // read in data from route
-  d3.json(fareDataUrl1).then(function(faredata) {
+  d3.json(fareDataUrl1, function(faredata) {
     // console.log(`Station ${faredata[0]}`)
     // console.log(`Fares ${faredata[1]}`)
     for (x = 0; x < faredata.length; x++) {
@@ -232,7 +233,8 @@ function baseChart() {
         fareDataUrl = `/locations/stopID/${uniqueStopID}`
 
         // read in data from route
-        d3.json(fareDataUrl).then(function(faredata) {
+        // use to be d3.json(fareDataUrl).then(function(faredata) {})
+        d3.json(fareDataUrl, function(faredata) {
           // console.log(`Station ${faredata[0]}`)
           // console.log(`Fares ${faredata[1]}`)
           for (x = 0; x < faredata.length; x++) {
@@ -340,8 +342,8 @@ var heatmapChart = function(column) {
   heatURL = '/locations/turnstile'
   var parser = d3.timeParse('%m/%d/%Y')
   var formatter = d3.timeFormat('%w')
-
-  d3.json(heatURL).then(function(heatData) {
+  // read in turnstile route data
+  d3.json(heatURL, function(heatData) {
     // console.log(data)
     // create an empty array
     var data = []
@@ -356,6 +358,7 @@ var heatmapChart = function(column) {
       })
     }
     // where the code change ends
+
     console.log(data)
 
     formatComma = d3.format(',')
