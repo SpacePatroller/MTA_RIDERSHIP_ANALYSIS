@@ -128,6 +128,7 @@ function plotStopsOnMap() {
     // grab unique stop id and push to array if array is greater then one remove last item. on line 141
     var markerIconValue = d3.selectAll('.leaflet-marker-icon')
     markerIconValue.on('click', function() {
+      d3.event.preventDefault()
       work = d3.select(this).attr('alt')
       uniqueStopID.unshift(+work)
       if (uniqueStopID.length > 1) {
@@ -230,6 +231,7 @@ function fareChart() {
 
       // on click grab the station id and query the route based on that information.
       d3.selectAll('#mapid').on('click', function() {
+        d3.event.preventDefault()
         fareDataUrl = `/locations/stopID/${uniqueStopID}`
 
         // read in data from route
@@ -346,7 +348,7 @@ var timeLabels = svg
 
 var heatmapChart = function(column) {
   console.log(uniqueStopID)
-  heatURL = `/locations/turnstile/${uniqueStopID}`
+  heatURL = `/locations/turnstile`
   var parser = d3.timeParse('%m/%d/%Y')
   var formatter = d3.timeFormat('%w')
   // read in turnstile route data
