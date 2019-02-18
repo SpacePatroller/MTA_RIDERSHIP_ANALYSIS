@@ -8,15 +8,16 @@ The MTA (Metro Transit Authority) New York City Transit is the largest public tr
 
 ![Alt text](images/MTA_Data_Feed.png?raw=true "Data Feed")
 URL: http://web.mta.info (http://web.mta.info/developers/developer-data-terms.html#data)
-Extracted files:
-fares_190209.csv
 
 
 
 
-![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+### Extracted files:
 
-fares_190209.csv
+
+
+**fares_190209.csv**
+
 ![Alt text](images/Fares_190209.png?raw=true "Fares Table")
 Breakdown of the types of riders using the station. 
 26 different fare types.
@@ -24,17 +25,15 @@ Breakdown of the types of riders using the station.
 Updated weekly.
 
 
+**Turnstiles_190209.csv**
 ![Alt text](images/turnstyles_fares_stations2View.png?raw=true "Turnstyle Tables")
-
-Turnstiles_190209.csv
 
 Tracks total entries and exits from all turnstiles divided into individual stations.
 Updated every three hours.
 
 
+**Station_ref.csv**
 ![Alt text](images/Stations_CSV.png?raw=true "Stations Table")
-
-Station_ref.csv
 
 In depth info on station names, lines, and booths.
 Turnstiles_fares_stations2.csv
