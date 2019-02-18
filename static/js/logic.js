@@ -158,7 +158,7 @@ function fareChart() {
       allFares = faredata[1][x]
       label = ['Fare Data']
 
-      ctx = document.getElementById('myChart').getContext('2d')
+      ctx = document.getElementById('fareChart').getContext('2d')
       var myChart = new Chart(ctx, {
         type: 'bar',
         data: {
@@ -347,13 +347,13 @@ var timeLabels = svg
 // where the code changes
 
 var heatmapChart = function(column) {
-  console.log(uniqueStopID)
+  // console.log(uniqueStopID)
   heatURL = `/locations/turnstile`
   var parser = d3.timeParse('%m/%d/%Y')
   var formatter = d3.timeFormat('%w')
   // read in turnstile route data
   d3.json(heatURL, function(heatData) {
-    console.log(heatData)
+    // console.log(heatData)
     // create an empty array
     var data = []
     // loop through turnstile data and push to data array
@@ -376,7 +376,7 @@ var heatmapChart = function(column) {
     //   column = 'Total'
     // }
 
-    console.log(data)
+    // console.log(data)
 
     formatComma = d3.format(',')
 
@@ -515,4 +515,24 @@ datasetpicker
   .attr('class', 'dataset-button')
   .on('click', function(d) {
     heatmapChart(d)
+  })
+
+  function updateHeatMap () {
+
+
+  }
+
+
+
+
+
+  d3.selectAll('#mapid').on('click', function() {
+    d3.event.preventDefault()
+    fareDataUrl = `/locations/stopID/${uniqueStopID}`
+
+    d3.json(fareDataUrl, function (data) {
+
+      console.log(`testing ${data}`)
+    })
+
   })

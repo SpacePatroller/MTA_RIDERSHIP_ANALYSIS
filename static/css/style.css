@@ -1,5 +1,5 @@
 body {
-  background-color: rgb(42, 49, 49);
+  /* background-color: rgb(78, 97, 97); */
   /* background-image: url("http://cdn8.openculture.com/wp-content/uploads/2014/05/vignelli-subway-map-19721.jpg");
   background-attachment: fixed;
   background-repeat: no-repeat;
@@ -14,33 +14,26 @@ h4 {
 #mapid {
   height: 30pc;
   width: 40pc;
-  border: 2px solid rgba(232, 194, 48, 1);
-  border-right: 5px solid black;
-  border-top: 5px solid black;
-  border-bottom-right-radius: 8px;
-  border-bottom-left-radius: 2px;
+  border: 2px solid rgb(0, 0, 0);;
+  border-radius: 5px;
+
 }
 
 #fareChart {
-  /* color: rgb(24, 26, 21);
-  background-color: rgb(247, 241, 241);
-  margin-right: 15px;
-  margin-top: 5px;
-  margin-bottom: 10px;
-  border: 2px solid rgba(232, 194, 48, 1);
-  border-right: 5px solid black;
-  border-top: 5px solid black;
-  border-bottom-right-radius: 8px;
-  border-top-right-radius: 8px;
-  border-bottom-left-radius: 2px; */
-  height: 30pc;
-  width: 40pc;
+  color: rgb(24, 26, 21); 
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 10px;
+  margin: 10px;
+  height: 2%;
+  width: 2px;
 }
 
-#heatChart {
+#heatChart1 {
+  border: 2px solid rgb(0, 0, 0);
+  border-radius: 5px;
   color: rgb(19, 26, 10);
-  /* height: 30pc;
-  width: 40pc; */
+  margin-right: 5px;
+  margin: 10px;
 }
 
 .container-fluid {
@@ -49,13 +42,13 @@ h4 {
 
 #headerTron {
   background-color: rgb(42, 49, 49);
-  border: 5px solid rgba(232, 194, 48, 1);
+  border: 5px solid rgb(0, 0, 0);
   border-right: 5px solid black;
   border-top: 20px solid black;
   border-radius: 20px;
   /* border-bottom-right-radius: 50px;
   border-bottom-left-radius: 50px; */
-  height: 200px;
+  height: 2px;
   background-size: 50%;
   font-family: 'Lora', serif;
 }
