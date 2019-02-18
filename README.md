@@ -6,7 +6,7 @@ The MTA (Metro Transit Authority) New York City Transit is the largest public tr
 
 # The Data
 
-![Alt text](https://github.com/SpacePatroller/Group_A_Project_2/blob/master/images/Fares_190209.png raw=true "Fares Table")
+![Alt text](/SpacePatroller/Group_A_Project_2/master/images/Fares_190209.png raw=true "Fares Table")
 URL: http://web.mta.info (http://web.mta.info/developers/developer-data-terms.html#data)
 Extracted files:
 fares_190209.csv
