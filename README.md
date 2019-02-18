@@ -13,25 +13,26 @@ fares_190209.csv
 
 
 
+
 ![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
-Breakdown of the types of riders using the station. 
-26 different fare types.
-516 different stations.
-Updated weekly.
 
 fares_190209.csv
-
-
-
+![Alt text](images/Fares_190209.png?raw=true "Fares Table")
 Breakdown of the types of riders using the station. 
 26 different fare types.
 516 different stations.
 Updated weekly.
+
+
+![Alt text](images/turnstyles_fares_stations2View.png?raw=true "Turnstyle Tables")
 
 Turnstiles_190209.csv
 
-Tracks entries and exits from all turnstiles broken down by station.
+Tracks total entries and exits from all turnstiles divided into individual stations.
 Updated every three hours.
+
+
+![Alt text](images/Stations_CSV.png?raw=true "Stations Table")
 
 Station_ref.csv
 
