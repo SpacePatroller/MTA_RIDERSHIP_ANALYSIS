@@ -4,6 +4,43 @@
 
 The MTA (Metro Transit Authority) New York City Transit is the largest public transportation agency in North America and one of the largest in the world. The subway has a daily ridership of more than 5.6 million and an annual ridership in 2016 of roughly 1.757 billion in total. Thankfully the MTA open sources the daily data in frequently updated feeds for app development and trend analysis. With that in mind our team decided to look deeper into the story of the day-to-day life on the New York Subway. To gain a better understanding of who is riding the New York Subway and when.
 
+# The Data
+
+![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+URL: http://web.mta.info (http://web.mta.info/developers/developer-data-terms.html#data)
+Extracted files:
+fares_190209.csv
+
+
+
+![Alt text](/relative/path/to/img.jpg?raw=true "Optional Title")
+Breakdown of the types of riders using the station. 
+26 different fare types.
+516 different stations.
+Updated weekly.
+
+fares_190209.csv
+
+
+
+Breakdown of the types of riders using the station. 
+26 different fare types.
+516 different stations.
+Updated weekly.
+
+Turnstiles_190209.csv
+
+Tracks entries and exits from all turnstiles broken down by station.
+Updated every three hours.
+
+Station_ref.csv
+
+In depth info on station names, lines, and booths.
+Turnstiles_fares_stations2.csv
+Cleaned version of the fare data to include a unique Station ID.
+
+
+
 
 
 index.html	 Initial Layout has been set. 
