@@ -16,21 +16,20 @@ h4 {
 #mapid {
   height: 30pc;
   width: 40pc;
-  border: 2px solid rgb(0, 0, 0);;
+  border: 2px solid rgb(0, 0, 0);
   border-radius: 5px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-
 }
 
 #fareChart {
-  color: rgb(24, 26, 21); 
+  color: rgb(24, 26, 21);
   border: 2px solid rgb(0, 0, 0);
   border-radius: 10px;
   margin: 10px;
   height: 2%;
   width: 2px;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
-  background-color: rgb(247, 245, 245);
+  background-color: rgb(255, 255, 255);
 }
 
 #heatChart1 {
@@ -55,8 +54,8 @@ h4 {
   border-radius: 20px;
   /* border-bottom-right-radius: 50px;
   border-bottom-left-radius: 50px; */
-  height: 2px;
-  background-size: 50%;
+  height: 1px;
+  /* background-size: 50%; */
   font-family: 'Lora', serif;
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
@@ -81,7 +80,7 @@ text.mono {
 .tooltip {
   position: absolute;
   width: 90px;
-  height: 30px;
+  height: 90px;
   padding: 10px;
   font: 12px courier;
   text-align: center;
