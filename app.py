@@ -207,8 +207,6 @@ def turnstileByStopID(stopid):
     return jsonify(data)
 
 
-    # @app.errorhandler(404)
-    # def page_not_found(e):
-    #     return ("O something went wrong")
+  
 if __name__ == "__main__":
     app.run(debug = True)

@@ -414,16 +414,6 @@ var heatmapChart = function(column, route) {
       // where the code change ends
     }
 
-    // if (column == 'Entries') {
-    //   column = 'EntriesDiff'
-    // } else if (column == 'Exits') {
-    //   column = 'ExitsDiff'
-    // } else {
-    //   column = 'Total'
-    // }
-
-    // console.log(data)
-
     formatComma = d3.format(',')
 
     var colorScale = d3.scale
@@ -567,11 +557,4 @@ datasetpicker
     }
   })
 
-// d3.selectAll('#mapid').on('click', function() {
-//   d3.event.preventDefault()
-//   heatmapChart('Entries', `${uniqueStopID}`)
-//   console.log(uniqueStopID)
-//   // d3.json(fareDataUrl, function(data) {
-//   //   console.log(`testing ${data}`)
-//   // })
-// })
+//final
