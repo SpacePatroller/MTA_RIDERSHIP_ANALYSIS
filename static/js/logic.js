@@ -35,42 +35,42 @@ function plotStopsOnMap() {
         case 'Elevated':
           elevated.push(
             L.marker([lat, lon], { alt: stopID, icon: greenIcon }).bindTooltip(
-              `<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`
+              `<p>Line - ${line}</p><hr><p>Stop - ${stopName}</p><hr><p>Divsion - ${division}<hr><p>Structure - ${structure}</p>`
             )
           )
           break
         case 'Subway':
           subway.push(
             L.marker([lat, lon], { alt: stopID, icon: greenIcon }).bindTooltip(
-              `<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`
+              `<p>Line - ${line}</p><hr><p>Stop - ${stopName}</p><hr><p>Divsion - ${division}<hr><p>Structure - ${structure}</p>`
             )
           )
           break
         case 'Open Cut':
           open_cut.push(
             L.marker([lat, lon], { alt: stopID, icon: greenIcon }).bindTooltip(
-              `<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`
+              `<p>Line - ${line}</p><hr><p>Stop - ${stopName}</p><hr><p>Divsion - ${division}<hr><p>Structure - ${structure}</p>`
             )
           )
           break
         case 'Viaduct':
           viaduct.push(
             L.marker([lat, lon], { alt: stopID, icon: greenIcon }).bindTooltip(
-              `<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`
+              `<p>Line - ${line}</p><hr><p>Stop - ${stopName}</p><hr><p>Divsion - ${division}<hr><p>Structure - ${structure}</p>`
             )
           )
           break
         case 'At Grade':
           at_grade.push(
             L.marker([lat, lon], { alt: stopID, icon: greenIcon }).bindTooltip(
-              `<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`
+              `<p>Line - ${line}</p><hr><p>Stop - ${stopName}</p><hr><p>Divsion - ${division}`
             )
           )
           break
         case 'Embankment':
           embankment.push(
             L.marker([lat, lon], { alt: stopID, icon: greenIcon }).bindTooltip(
-              `<p>Line-${line}</p><hr><p>Stop-${stopName}</p><hr><p>Divsion-${division}`
+              `<p>Line - ${line}</p><hr><p>Stop - ${stopName}</p><hr><p>Divsion - ${division}`
             )
           )
           break
@@ -246,7 +246,6 @@ function fareChart() {
                 'rgba(75, 192, 192, 1)',
                 'rgba(153, 102, 255, 1)',
                 'rgba(255, 159, 64, 1)'
-                
               ],
               borderWidth: 1
             }
@@ -269,6 +268,7 @@ function fareChart() {
 
       // on click grab the station id and query the route based on that information.
       d3.selectAll('#mapid').on('click', function() {
+        heatmapChart('Entries', `${uniqueStopID}`)
         d3.event.preventDefault()
         fareDataUrl = `/locations/stopID/${uniqueStopID}`
 
@@ -318,7 +318,7 @@ fareChart()
 //////////////////// heat map chart ////////////////////////
 
 var margin = { top: 50, right: 0, bottom: 100, left: 30 },
-  width = 960 - margin.left - margin.right,
+  width = 460 - margin.left - margin.right,
   height = 430 - margin.top - margin.bottom,
   gridSize = Math.floor(height / 7),
   legendElementHeight = gridSize / (9 / 7),
@@ -341,6 +341,7 @@ datasets = ['Entries', 'Exits', 'Total_Activity']
 var svg = d3
   .select('#heatChart')
   .append('svg')
+  .attr('id', 'heatChartSvg')
   .attr('width', width + margin.left + margin.right)
   .attr('height', height + margin.top + margin.bottom)
   .append('g')
@@ -383,15 +384,22 @@ var timeLabels = svg
   .attr('class', 'timeLabel mono axis axis-worktime')
 
 // where the code changes
+var heatmapChart = function(column, route) {
+  var heatURL = ''
 
-var heatmapChart = function(column) {
+  // if (!!route || route === null) {
+  //   heatURL = `/locations/turnstile/null`
+  // } else {
+  heatURL = `/locations/turnstile/${route}`
+  // }
+
   // console.log(uniqueStopID)
-  heatURL = `/locations/turnstile`
+  // heatURL = `/locations/turnstile`
   var parser = d3.timeParse('%m/%d/%Y')
   var formatter = d3.timeFormat('%w')
   // read in turnstile route data
   d3.json(heatURL, function(heatData) {
-    // console.log(heatData)
+    console.log(heatData)
     // create an empty array
     var data = []
     // loop through turnstile data and push to data array
@@ -536,7 +544,7 @@ var heatmapChart = function(column) {
   })
 }
 
-heatmapChart('Entries')
+heatmapChart('Entries', null)
 
 var datasetpicker = d3
   .select('#dataset-picker')
@@ -552,25 +560,18 @@ datasetpicker
   .attr('type', 'button')
   .attr('class', 'dataset-button')
   .on('click', function(d) {
-    heatmapChart(d)
+    if (uniqueStopID == []) {
+      heatmapChart(d, null)
+    } else {
+      heatmapChart(d, `${uniqueStopID}`)
+    }
   })
 
-  function updateHeatMap () {
-
-
-  }
-
-
-
-
-
-  d3.selectAll('#mapid').on('click', function() {
-    d3.event.preventDefault()
-    fareDataUrl = `/locations/stopID/${uniqueStopID}`
-
-    d3.json(fareDataUrl, function (data) {
-
-      console.log(`testing ${data}`)
-    })
-
-  })
+// d3.selectAll('#mapid').on('click', function() {
+//   d3.event.preventDefault()
+//   heatmapChart('Entries', `${uniqueStopID}`)
+//   console.log(uniqueStopID)
+//   // d3.json(fareDataUrl, function(data) {
+//   //   console.log(`testing ${data}`)
+//   // })
+// })

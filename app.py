@@ -106,7 +106,34 @@ def fares():
     ]
 
     fareInformation = session.query(fareData.STATION).all()
-    fareCountInformation = (session.query(*sel).all())
+    fareCountInformation = session.query(func.sum(fareData.FF),
+                    func.sum(fareData.SEN_DIS),
+                    func.sum(fareData.SEVEN_D_AFAS_UNL),
+                    func.sum(fareData.THIRTY_D_AFAS_RMF_UNL),
+                    func.sum(fareData.JOINT_RR_TKT),
+                    func.sum(fareData.SEVEN_D_UNL),
+                    func.sum(fareData.THIRTY_D_UNL),
+                    func.sum(fareData.FOURTEEN_D_RFM_UNL),
+                    func.sum(fareData.ONE_D_UNL),
+                    func.sum(fareData.FOURTEEN_D_UNL),
+                    func.sum(fareData.SEVEND_XBUS_PASS),
+                    func.sum(fareData.TCMC),
+                    func.sum(fareData.RF_TWO_TRIP),
+                    func.sum(fareData.RR_UNL_NO_TRADE),
+                    func.sum(fareData.TCMC_ANNUAL_MC),
+                    func.sum(fareData.MR_EZPAY_EXP),
+                    func.sum(fareData.MR_EZPAY_UNL),
+                    func.sum(fareData.PATH_TWO_T),
+                    func.sum(fareData.AIRTRAIN_FF),
+                    func.sum(fareData.AIRTRAIN_THIRTY_D),
+                    func.sum(fareData.AIRTRAIN_TEN_T),
+                    func.sum(fareData.AIRTRAIN_MTHLY),
+                    func.sum(fareData.STUDENTS),
+                    func.sum(fareData.NICE_TWO_T),
+                    func.sum(fareData.CUNY_ONETWENTY),
+                    func.sum(fareData.CUNY_SIXTY)
+
+                   ).all()
 
     return jsonify(fareInformation, fareCountInformation)
 
@@ -116,7 +143,7 @@ def fares():
 def fareInfo(stationid):
 
     # list for of columns to query
-    sel = [
+    sel=[
         fareData.FF,
         fareData.SEN_DIS,
         fareData.SEVEN_D_AFAS_UNL,
@@ -148,15 +175,15 @@ def fareInfo(stationid):
 
     fareInformation = session.query(fareData.STATION).filter(
         fareData.Station_ID == stationid).all()
-    fareCountInformation = (session.query(
+    fareCountInformation=(session.query(
         *sel).filter(fareData.Station_ID == stationid).all())
     return jsonify(fareInformation, fareCountInformation)
 
 
-@app.route("/locations/turnstile/")
+@app.route("/locations/turnstile/null")
 def turnstile():
 
-    data = session.query((turnStileData.DATE),
+    data=session.query((turnStileData.DATE),
                          (turnStileData.TIME),
                          func.sum(turnStileData.ENTRIES_DIFF),
                          func.sum(turnStileData.EXITS_DIFF),
@@ -166,10 +193,22 @@ def turnstile():
 
     return jsonify(data)
 
+@app.route("/locations/turnstile/<stopid>")
+def turnstileByStopID(stopid):
+
+    data=session.query((turnStileData.DATE),
+                         (turnStileData.TIME),
+                         func.sum(turnStileData.ENTRIES_DIFF),
+                         func.sum(turnStileData.EXITS_DIFF),
+                         func.sum(turnStileData.TOTAL_ACTIVITY),
+
+                         ).group_by(turnStileData.DATE, turnStileData.TIME).filter(turnStileData.Station_ID == stopid).all()
+
+    return jsonify(data)
+
 
     # @app.errorhandler(404)
     # def page_not_found(e):
     #     return ("O something went wrong")
 if __name__ == "__main__":
-    app.run(debug=True)
-
+    app.run(debug = True)
