@@ -54,22 +54,16 @@ Cleaned version of the fare data to include a unique Station ID.
 
 ![Alt text](images/Map.png?raw=true "Mapbox Map")
 
-- Heatmap.png
+![Alt text](images/CalHeatMap.png?raw=true "CalHeat Map")
 - link to heatmap code
 - data source link
 - problems
 - adjustments
 - advancements moving forward?
 
+![Alt text](images/Barchart.png?raw=true "Barchart")
 - BarChart.png
 - Link to barchart code
-- data source link
-- problems
-- adjustments
-- advancements moving forward?
-
-- Table 
-- Link to table code
 - data source link
 - problems
 - adjustments
