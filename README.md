@@ -44,8 +44,17 @@ Cleaned version of the fare data to include a unique Station ID.
 ## Extraction/Transformation.
 
 **Data cleaning**
-  -inpby links/screenshots (if screenshots we need to use only code that you find interesting, otherwise theis will just be 20 screenshots.)
 ![Alt text](images/turnstyles_fares_stations2View.png?raw=true "Stations Cross Reference")
+
+The data we retrieved from MTA did not have any unique identifiers for us to link turnstile data or fare data to our station location reference.
+
+In order to allow us to query all 3 tables at once we needed to create a cross reference table that matched the station locations to the rows of data in the turnstile and fare data.
+
+Luckily for us, the turnstile data and the fare data could be joined together on a unique id assigned to each bank of turnstiles in a station (UNIT and REMOTE).
+
+From there we utilized StubHub's FuzzyWuzzy python library to perform fuzzy matching of the station name strings. This allowed us to match about 75% of the station names accurately. The remaining 25% of the matching was performed manually.
+
+Another transformation that we needed to perform on the data was calculating differences on the turnstile data. Since turnstiles function by constantly counting upwards, we needed to subtract turnstile counts from the previous count to measure activity.
 
 **SQLite Database**
   - 
