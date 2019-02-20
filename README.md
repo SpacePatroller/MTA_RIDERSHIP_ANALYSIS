@@ -76,7 +76,7 @@ SQLite Database is comprised of three tables, Fared Data, Stop Location Data, an
 - adjustments
 - advancements moving forward?
 
-![Alt text](images/Barchart.png?raw=true "Barchart")
+![Alt text](images/Barchart_totals.png?raw=true "Barchart")
 - BarChart.png
 - Link to barchart code
 - data source link
