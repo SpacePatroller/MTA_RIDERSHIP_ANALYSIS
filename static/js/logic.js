@@ -382,6 +382,14 @@ var timeLabels = svg
   .attr('transform', 'translate(' + gridSize / 2 + ', -6)')
   .attr('class', 'timeLabel mono axis axis-worktime')
 
+// var title =  svg.append("text")
+//        .attr("x", (width / 2))             
+//        .attr("y", 0 - (margin.top / 2))
+//        .attr("text-anchor", "middle")  
+//        .style("font-size", "16px") 
+//        .style("text-decoration", "underline")  
+//        .text("Number of Riders: Date vs. Time");
+
 // where the code changes
 var heatmapChart = function(column, route) {
   var heatURL = ''
