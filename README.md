@@ -77,18 +77,14 @@ SQLite Database is comprised of three tables, Fared Data, Stop Location Data, an
 - advancements moving forward?
 
 ![Alt text](images/Barchart_totals.png?raw=true "Barchart")
-- BarChart.png
-- Link to barchart code
-- data source link
-- problems
-- adjustments
-- advancements moving forward?
+- data source: fares_190209.csv
 
 
 ## Heroku App
 - png of dashboard in case it's not working
-- links to code
-- Walk through an example.
+
+https://mta-subway-information.herokuapp.com/
+
 
 
 ## Future work
