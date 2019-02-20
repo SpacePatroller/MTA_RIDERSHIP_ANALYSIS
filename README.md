@@ -45,6 +45,7 @@ Cleaned version of the fare data to include a unique Station ID.
 
 **Data cleaning**
   -inpby links/screenshots (if screenshots we need to use only code that you find interesting, otherwise theis will just be 20 screenshots.)
+![Alt text] (images/turnstyles_fares_stations2View.png?raw=true "Station Cross Reference")
 
 **SQLite Database**
   - 
