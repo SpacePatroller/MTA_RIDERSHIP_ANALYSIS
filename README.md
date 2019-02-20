@@ -52,6 +52,8 @@ Cleaned version of the fare data to include a unique Station ID.
 
 ## Visualization
 
+![Alt text](images/Map.png?raw=true "Mapbox Map")
+
 - Heatmap.png
 - link to heatmap code
 - data source link
