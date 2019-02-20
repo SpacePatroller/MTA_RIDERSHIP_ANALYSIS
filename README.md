@@ -59,6 +59,10 @@ Another transformation that we needed to perform on the data was calculating dif
 **SQLite Database**
   - 
 SQLite Database is comprised of three tables, Fared Data, Stop Location Data, and Turnstile Data. Each of these tables were loaded into the database employing Python’s SQL Alchemy library. Once loaded, SQLite DB Browser was utilized to rename the columns, removing white space and any characters that would hinder the time it would take to write queries. Within the SQLite DB Browser primary keys were also assigned to each of tables. 
+
+**Flask Application**
+ - 
+
  
 
 ## Visualization
