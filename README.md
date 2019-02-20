@@ -62,6 +62,23 @@ SQLite Database is comprised of three tables, Fared Data, Stop Location Data, an
 
 **Flask Application**
  - 
+ 
+ Connection to the DB is created through the Flask App using SQL Alchemy. Queries are based off the SQL Alchemy ORM documentation and reflect standard SQL statements. 
+
+Flask APP Routes and Queries
+1.	@app.route(“/”)
+a.	Main route to render our index.html. 
+2.	 @app.route(“/locations”)
+a.	Dedicated route that queries each stops latitude and longitude. As well as: stop name, division, structure type, and station id. 
+3.	@app.route(“/fareData”)
+a.	One of two routes for the Fare Data table. Initial route queries all fares and totals them by fare type. 
+i.	@app.route(/locations/stopID/<stationed>”)
+1.	Second route that takes a variable that is the unique Station ID and filters the query based upon the entered Station ID. 
+4.	@app.route(“/locations/turnstile/null”)
+a.	One of two routes for the heat map. Initial route queries all entries, exits, and total activity for all the stations grouped by date and time. 
+i.	@app.route(“/locations/turnstile/<stopid>”)
+1.	Second route that performs the same query as above however queries the table by the entered Station ID. 
+
 
  
 
