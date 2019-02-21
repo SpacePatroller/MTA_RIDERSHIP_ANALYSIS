@@ -97,9 +97,8 @@ http://bl.ocks.org/tjdecke/5558084
 
 
 ## Heroku App
-- png of dashboard in case it's not working
 
-https://mta-subway-information.herokuapp.com/
+http://mta-subway-information.herokuapp.com/
 
 
 
