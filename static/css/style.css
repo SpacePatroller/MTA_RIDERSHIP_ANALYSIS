@@ -60,6 +60,14 @@ h4 {
   box-shadow: 0 4px 8px 0 rgba(0, 0, 0, 0.2), 0 6px 20px 0 rgba(0, 0, 0, 0.19);
 }
 
+.lead {
+  text-align: center;
+  color: rgb(83, 72, 182);
+  font-size: 40px;
+  text-anchor: center;
+  padding-bottom: 80px;
+}
+
 #title {
   text-align: center;
   color: black;
