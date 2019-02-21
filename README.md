@@ -4,6 +4,10 @@
 
 The MTA (Metro Transit Authority) New York City Transit is the largest public transportation agency in North America and one of the largest in the world. The subway has a daily ridership of more than 5.6 million and an annual ridership in 2016 of roughly 1.757 billion in total. Thankfully the MTA open sources the daily data in frequently updated feeds for app development and trend analysis. With that in mind our team decided to look deeper into the story of the day-to-day life on the New York Subway. To gain a better understanding of who is riding the New York Subway and when.
 
+## Business Reason
+
+Our goal of analysis on this data was two fold, one being from the standpoint of the MTA and one being as an individual business owner.  The annual budget of the MTA is over 16 billion dollars with nearly 1/3rd of that being for payroll.  Using this data, the MTA could see when and where their resources could be best utilized.  Also, a savvy business owner could look at the fare data and make a better determinations as to where to locate their businesses.
+
 ## The Data
 
 ![Alt text](images/MTA_Data_Feed.png?raw=true "Data Feed")
