@@ -86,6 +86,8 @@ Flask APP Routes and Queries
 
 ![Alt text](images/Map.png?raw=true "Mapbox Map")
 
+**Calendar Heatmap**
+
 ![Alt text](images/CalHeatMap.png?raw=true "CalHeat Map")
 
 http://bl.ocks.org/tjdecke/5558084
