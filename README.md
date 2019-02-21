@@ -90,21 +90,19 @@ Flask APP Routes and Queries
 
 ![Alt text](images/Map.png?raw=true "Mapbox Map")
 
+**Calendar Heatmap**
+
 ![Alt text](images/CalHeatMap.png?raw=true "CalHeat Map")
-- link to heatmap code
-- data source link
-- problems
-- adjustments
-- advancements moving forward?
+
+http://bl.ocks.org/tjdecke/5558084
 
 ![Alt text](images/Barchart_totals.png?raw=true "Barchart")
 - data source: fares_190209.csv
 
 
 ## Heroku App
-- png of dashboard in case it's not working
 
-https://mta-subway-information.herokuapp.com/
+http://mta-subway-information.herokuapp.com/
 
 
 
